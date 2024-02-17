@@ -13,6 +13,10 @@ export default function HomePage() {
       <TouchableOpacity onPress={() => router.push('/t/login-google')}>
         <Text>Login W Google</Text>
       </TouchableOpacity>
+
+      <TouchableOpacity onPress={() => router.push('/t/zustand')}>
+        <Text>Test zustand</Text>
+      </TouchableOpacity>
     </View>
   )
 }
