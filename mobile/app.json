@@ -12,19 +12,21 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
-      "supportsTablet": true
-    },
-    "android": {
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
-      }
+      "googleServicesFile": "./GoogleService-Info.plist",
+      "bundleIdentifier": "com.bunbolabs.Sticker"
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
-    "plugins": ["expo-router"]
+    "plugins": [
+      "@react-native-google-signin/google-signin"
+    ],
+    "android": {
+      "package": "com.bunbolabs.Sticker"
+    }
   }
 }
