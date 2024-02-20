@@ -12,9 +12,7 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "googleServicesFile": "./GoogleService-Info.plist",
       "bundleIdentifier": "com.bunbolabs.Sticker"
@@ -23,7 +21,13 @@
       "favicon": "./assets/favicon.png"
     },
     "plugins": [
-      "@react-native-google-signin/google-signin"
+      "@react-native-google-signin/google-signin",
+      [
+        "expo-font",
+        {
+          "fonts": ["./assets/fonts/Knewave-outline.ttf", "./assets/fonts/Knewave.ttf"]
+        }
+      ]
     ],
     "android": {
       "package": "com.bunbolabs.Sticker"

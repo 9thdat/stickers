@@ -30,6 +30,7 @@ export const IMAGES = {
   point_hand: require('../assets/stickers/point-hand.png'),
   get_in: require('../assets/stickers/get-in.png'),
   bg_login: require('../assets/stickers/bg-login.png'),
+  bg_handle: require('../assets/stickers/bg-handle.png'),
   hydrangea: require('../assets/stickers/hydrangea.png'),
   login_wif_cup: require('../assets/stickers/login-wif-cup.png'),
   capybara_doge: require('../assets/stickers/login-capybara-backpack-doge.png'),

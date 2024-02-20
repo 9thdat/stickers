@@ -1,134 +1,91 @@
 import { IMAGES } from '@/lib/config'
-import { GoogleSignin } from '@react-native-google-signin/google-signin'
 import { Image } from 'expo-image'
-import { TouchableOpacity, View } from 'react-native'
+import { View, Text, TextInput } from 'react-native'
+import { useFonts } from 'expo-font'
+import { useCallback } from 'react'
 
 const blurhash =
   '|rF?hV%2WCj[ayj[a|j[az_NaeWBj@ayfRayfQfQM{M|azj[azf6fQfQfQIpWXofj[ayj[j[fQayWCoeoeaya}j[ayfQa{oLj?j[WVj[ayayj[fQoff7azayj[ayj[j[ayofayayayj[fQj[ayayj[ayfjj[j[ayjuayj['
 
 export default function Page() {
-  const signIn = async () => {
-    try {
-      await GoogleSignin.hasPlayServices()
-      const userInfo = await GoogleSignin.signIn()
+  const [fontsLoaded, fontError] = useFonts({
+    KnewaveOutline: require('../../assets/fonts/Knewave-outline.ttf'),
+    Knewave: require('../../assets/fonts/Knewave.ttf'),
+  })
 
-      console.log(userInfo)
-    } catch (error) {
-      console.log(error)
+  const onLayoutRootView = useCallback(async () => {
+    if (fontsLoaded || fontError) {
+      // await SplashScreen.hideAsync();
     }
+  }, [fontsLoaded, fontError])
+
+  if (!fontsLoaded && !fontError) {
+    return null
   }
 
   return (
-    <View className="absolute flex h-screen w-screen items-center justify-center bg-[#fff]">
-      <View className="absolute top-0 h-full w-full">
+    <View className="absolute flex h-screen w-screen items-center justify-center bg-[#fff]" onLayout={onLayoutRootView}>
+      <View className="absolute bottom-[-4%] w-full">
         <Image
-          className="h-[85%] w-full "
-          source={IMAGES.bg_login}
+          className="h-[400px] w-full "
+          source={IMAGES.bg_handle}
           placeholder={blurhash}
           contentFit="contain"
           transition={1000}
         />
       </View>
 
-      <View className="absolute -left-[10%] top-[22%]">
+      {/* <Text style={{ fontFamily: 'Knewave', fontSize: 32 }}>s0nhaaa</Text>
+      <Text style={{ fontFamily: 'KnewaveOutline', fontSize: 32 }}>s0nhaaa</Text> */}
+
+      <View className=" absolute top-[16%] flex w-full items-center justify-center">
         <Image
-          className="h-[200px] w-[220px]"
-          source={IMAGES.shake_hand}
+          className="h-[140px] w-[260px]"
+          source={IMAGES.you_are}
+          placeholder={blurhash}
+          contentFit="contain"
+          transition={1000}
+        />
+
+        <Image
+          className="absolute right-[-0%] top-[-50%] h-[150px] w-[250px]"
+          source={IMAGES.nheo_fight_ga}
           placeholder={blurhash}
           contentFit="contain"
           transition={1000}
         />
       </View>
 
-      <View className="absolute -left-[24%] top-[3%]">
+      <View className=" absolute bottom-[5%] flex w-full items-center ">
         <Image
-          className="h-[280px] w-[360px]"
-          source={IMAGES.capybara_doge}
+          className="h-[300px] w-[390px]"
+          source={IMAGES.cow_rug}
           placeholder={blurhash}
           contentFit="contain"
           transition={1000}
         />
       </View>
 
-      <View className="absolute -left-[22%] top-[35%]">
+      <View className=" flex w-full items-center ">
+        <TextInput
+          className=""
+          style={{
+            fontFamily: 'Knewave',
+            fontSize: 32,
+          }}
+          placeholder="Hello"
+        />
+      </View>
+
+      <View className=" absolute bottom-[18%] flex w-full items-center ">
         <Image
-          className="h-[320px] w-[350px]"
-          source={IMAGES.login_wif_cup}
+          className="h-[283px] w-[300px]"
+          source={IMAGES.wood_table}
           placeholder={blurhash}
           contentFit="contain"
           transition={1000}
         />
       </View>
-
-      <View className="absolute -right-[30%] bottom-[14%] -rotate-[38deg]">
-        <Image
-          className="h-[300px] w-[300px]"
-          source={IMAGES.point_hand}
-          placeholder={blurhash}
-          contentFit="contain"
-          transition={1000}
-        />
-      </View>
-
-      <View className="absolute -right-6 top-[40%]">
-        <Image
-          className="h-[300px] w-[300px]"
-          source={IMAGES.sunflower}
-          placeholder={blurhash}
-          contentFit="contain"
-          transition={1000}
-        />
-      </View>
-
-      <View className="absolute -left-[22%] bottom-[20%]">
-        <Image
-          className="h-[154px] w-[370px]"
-          source={IMAGES.airplane}
-          placeholder={blurhash}
-          contentFit="contain"
-          transition={1000}
-        />
-      </View>
-
-      <View className="absolute -right-[25%] -top-[5%]">
-        <Image
-          className="h-[363px] w-[363px]"
-          source={IMAGES.mot_cot_pagoda}
-          placeholder={blurhash}
-          contentFit="contain"
-          transition={1000}
-        />
-      </View>
-
-      <View className="absolute right-[29%] top-[29%]">
-        <Image
-          className="h-[130px] w-[130px]"
-          source={IMAGES.hydrangea}
-          placeholder={blurhash}
-          contentFit="contain"
-          transition={1000}
-        />
-      </View>
-
-      <View className="absolute -right-[5%] top-[31%] rotate-[20deg]">
-        <Image
-          className="h-[120px] w-[120px]"
-          source={IMAGES.airpod}
-          placeholder={blurhash}
-          contentFit="contain"
-          transition={1000}
-        />
-      </View>
-
-      <TouchableOpacity className="absolute bottom-12 w-full px-5" onPress={() => signIn()}>
-        <Image
-          className="h-[120px] w-full"
-          source={IMAGES.get_in}
-          placeholder={blurhash}
-          contentFit="contain"
-          transition={1000}
-        />
-      </TouchableOpacity>
     </View>
   )
 }

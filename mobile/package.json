@@ -16,6 +16,8 @@
     "axios": "^1.6.7",
     "expo": "~50.0.7",
     "expo-constants": "~15.4.5",
+    "expo-font": "~11.10.3",
+    "expo-image": "~1.10.6",
     "expo-linking": "~6.2.2",
     "expo-router": "~3.4.7",
     "expo-status-bar": "~1.11.1",
@@ -28,8 +30,7 @@
     "react-native-screens": "^3.29.0",
     "slug": "^8.2.3",
     "zod": "^3.22.4",
-    "zustand": "^4.5.1",
-    "expo-image": "~1.10.6"
+    "zustand": "^4.5.1"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
