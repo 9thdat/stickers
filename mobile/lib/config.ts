@@ -20,3 +20,21 @@ export const ROUTES = {
   HANDLE: 'handle',
   HOME: 'home',
 }
+
+export const IMAGES = {
+  mot_cot_pagoda: require('../assets/stickers/mot-cot-pagoda.png'),
+  airpod: require('../assets/stickers/airpod.png'),
+  shake_hand: require('../assets/stickers/shake-hand.png'),
+  sunflower: require('../assets/stickers/sunflower.png'),
+  airplane: require('../assets/stickers/airplane.png'),
+  point_hand: require('../assets/stickers/point-hand.png'),
+  get_in: require('../assets/stickers/get-in.png'),
+  bg_login: require('../assets/stickers/bg-login.png'),
+  hydrangea: require('../assets/stickers/hydrangea.png'),
+  login_wif_cup: require('../assets/stickers/login-wif-cup.png'),
+  capybara_doge: require('../assets/stickers/login-capybara-backpack-doge.png'),
+  wood_table: require('../assets/stickers/wood-table.png'),
+  cow_rug: require('../assets/stickers/cow-rug.png'),
+  you_are: require('../assets/stickers/you-are.png'),
+  nheo_fight_ga: require('../assets/stickers/nheo-fight-ga.png'),
+}

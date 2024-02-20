@@ -7,7 +7,12 @@ import React from 'react'
 export default function RootLayout() {
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
-      <Stack />
+      <Stack
+        screenOptions={{
+          headerShown: false,
+          gestureEnabled: false,
+        }}
+      />
     </GestureHandlerRootView>
   )
 }
