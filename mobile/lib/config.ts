@@ -38,4 +38,10 @@ export const IMAGES = {
   cow_rug: require('../assets/stickers/cow-rug.png'),
   you_are: require('../assets/stickers/you-are.png'),
   nheo_fight_ga: require('../assets/stickers/nheo-fight-ga.png'),
+  toothlesses: require('../assets/stickers/toothlesses.png'),
+  bg_paper_texture: require('../assets/stickers/bg-paper-texture.png'),
+  camera: require('../assets/stickers/camera.png'),
+  friends: require('../assets/stickers/friends.png'),
+  ga: require('../assets/stickers/ga.png'),
+  hand_apple: require('../assets/stickers/hand-apple.png'),
 }

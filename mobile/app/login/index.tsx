@@ -10,12 +10,12 @@ const blurhash =
 export default function Page() {
   const signIn = async () => {
     try {
-      await GoogleSignin.hasPlayServices()
-      const userInfo = await GoogleSignin.signIn()
+      // await GoogleSignin.hasPlayServices()
+      // const userInfo = await GoogleSignin.signIn()
 
-      console.log(userInfo)
+      // console.log(userInfo)
 
-      router.push('/handle')
+      router.push('/me')
     } catch (error) {
       console.log(error)
     }
