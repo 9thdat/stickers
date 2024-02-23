@@ -28,12 +28,12 @@ export type UserResponse = {
 
 export type StickerUser = UserResponse
 
-const STICKER_URL = `http://127.0.0.1:3000/api/v1`
+const STICKER_URL = `http://127.0.0.1:8000/api/v1`
 
 export async function call<T, R>(
   method: Method,
   url: string,
-  data?: T
+  data?: T,
 ): Promise<StickerRequestResponse<AxiosResponse<R>>> {
   try {
     const response: AxiosResponse<R> = await axios(computeStickerEndpoint(url), {

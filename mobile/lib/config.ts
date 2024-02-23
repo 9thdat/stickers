@@ -44,4 +44,5 @@ export const IMAGES = {
   friends: require('../assets/stickers/friends.png'),
   ga: require('../assets/stickers/ga.png'),
   hand_apple: require('../assets/stickers/hand-apple.png'),
+  trash_bin: require('../assets/stickers/trash-bin.png'),
 }

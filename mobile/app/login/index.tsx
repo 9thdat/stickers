@@ -1,3 +1,4 @@
+import Sunflower from '@/components/stickers/sunflower'
 import { IMAGES } from '@/lib/config'
 import { GoogleSignin } from '@react-native-google-signin/google-signin'
 import { Image } from 'expo-image'
@@ -73,15 +74,7 @@ export default function Page() {
         />
       </View>
 
-      <View className="absolute -right-6 top-[40%]">
-        <Image
-          className="h-[300px] w-[300px]"
-          source={IMAGES.sunflower}
-          placeholder={blurhash}
-          contentFit="contain"
-          transition={1000}
-        />
-      </View>
+      <Sunflower />
 
       <View className="absolute -left-[22%] bottom-[20%]">
         <Image
