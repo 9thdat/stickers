@@ -1,22 +1,77 @@
 import Sunflower from '@/components/stickers/sunflower'
+import { useGameShift } from '@/hooks/use-gameshift'
+import { useUser } from '@/hooks/use-user'
 import { IMAGES } from '@/lib/config'
 import { GoogleSignin } from '@react-native-google-signin/google-signin'
 import { Image } from 'expo-image'
 import { router } from 'expo-router'
 import { TouchableOpacity, View } from 'react-native'
+import slug from 'slug'
 
 const blurhash =
   '|rF?hV%2WCj[ayj[a|j[az_NaeWBj@ayfRayfQfQM{M|azj[azf6fQfQfQIpWXofj[ayj[j[fQayWCoeoeaya}j[ayfQa{oLj?j[WVj[ayayj[fQoff7azayj[ayj[j[ayofayayayj[fQj[ayayj[ayfjj[j[ayjuayj['
 
 export default function Page() {
+  const { user, fetchUser, setUser, createUser, setIsAuth } = useUser()
+  const gameShift = useGameShift()
+
   const signIn = async () => {
     try {
-      // await GoogleSignin.hasPlayServices()
-      // const userInfo = await GoogleSignin.signIn()
+      await GoogleSignin.hasPlayServices()
+      const { user } = await GoogleSignin.signIn()
 
-      // console.log(userInfo)
+      if (user) {
+        console.log('fetch user from server: ', user.id)
+        const stickerFetchUserResponse = await fetchUser(user.id)
 
-      router.push('/me')
+        if (stickerFetchUserResponse.success) {
+          console.log('found user from server: ', stickerFetchUserResponse.message.data)
+          setUser(stickerFetchUserResponse.message.data)
+          setIsAuth(true)
+
+          router.push('/me')
+
+          return
+        }
+
+        let u = null
+
+        if (!stickerFetchUserResponse.success) {
+          console.log('fetch user from gameshift: ', user.id)
+          const gameShiftFetchUserResponse = await gameShift.fetchUser(user.id)
+
+          if (gameShiftFetchUserResponse.success) {
+            console.log('found user from gameshift: ', gameShiftFetchUserResponse.message.data)
+            u = {
+              id: gameShiftFetchUserResponse.message.data.referenceId,
+              email: gameShiftFetchUserResponse.message.data.email,
+              handle: slug(user.name || 'Someone', ''),
+              wallet: gameShiftFetchUserResponse.message.data.address,
+            }
+          }
+
+          if (!gameShiftFetchUserResponse.success) {
+            console.log('create user from gameshift: ', user.id, user.email)
+            const gameShiftRegisterUserResponse = await gameShift.registerUser(user.id, user.email)
+
+            if (gameShiftRegisterUserResponse.success) {
+              u = {
+                id: gameShiftRegisterUserResponse.message.data.referenceId,
+                email: gameShiftRegisterUserResponse.message.data.email,
+                handle: slug(user.name || 'Someone', ''),
+                wallet: gameShiftRegisterUserResponse.message.data.address,
+              }
+            }
+          }
+        }
+
+        if (u) {
+          setUser(u)
+          await createUser(u)
+
+          router.push('/handle')
+        }
+      }
     } catch (error) {
       console.log(error)
     }

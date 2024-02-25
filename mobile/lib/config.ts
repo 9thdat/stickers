@@ -52,4 +52,5 @@ export const IMAGES = {
   cat_hammer: require('../assets/stickers/cat-hammer.png'),
   mint: require('../assets/stickers/mint.png'),
   nope: require('../assets/stickers/nope.png'),
+  ok: require('../assets/stickers/ok.png'),
 }

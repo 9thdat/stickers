@@ -6,6 +6,7 @@ import NotificationTrigger from '@/components/notification-trigger'
 import UserName from '@/components/user-name'
 import { useSelectSticker } from '@/hooks/use-selected-sticker'
 import useStage from '@/hooks/use-stage'
+import { useUser } from '@/hooks/use-user'
 import { IMAGES } from '@/lib/config'
 import axios from 'axios'
 import { Image } from 'expo-image'
@@ -38,6 +39,7 @@ export default function Page() {
   const [responseBase64, setResponseBase64] = useState<string>('')
   const { stage, setStage } = useStage()
   const { setSelectedSticker } = useSelectSticker()
+  const { user } = useUser()
 
   const pickImage = async () => {
     const options: ImageLibraryOptions = {
@@ -84,7 +86,7 @@ export default function Page() {
         </View>
       </View>
 
-      <UserName name="ng0chuyen" />
+      <UserName name={user?.handle || 'Someone'} />
       <MyActionButtonGroup pickImage={pickImage} shown={stage === 'normal'} />
       <PickedStickerButtonGroup shown={stage === 'picked'} />
       <EditStickerButtonGroup shown={stage === 'editing'} />

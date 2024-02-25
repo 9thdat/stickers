@@ -43,12 +43,12 @@ export default function NotificationTrigger({ shown }: NotificationTriggerProps)
         transition={1000}
       />
 
-      <View className="absolute left-[20%] top-[20%] flex items-center justify-center px-2">
+      {/* <View className="absolute left-[20%] top-[20%] flex items-center justify-center px-2">
         <View className="aspect-square w-[25px] scale-x-[1.2] rounded-[50px] bg-red-600" />
         <Text style={{ fontFamily: 'Knewave' }} className="absolute scale-x-[1] text-white">
           3
         </Text>
-      </View>
+      </View> */}
     </Animated.View>
   )
 }

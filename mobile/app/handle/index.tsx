@@ -1,13 +1,26 @@
+import { useUser } from '@/hooks/use-user'
 import { IMAGES } from '@/lib/config'
 import { Image } from 'expo-image'
+import { router } from 'expo-router'
 import { useState } from 'react'
-import { TextInput, View } from 'react-native'
+import { TextInput, View, TouchableOpacity } from 'react-native'
 
 const blurhash =
   '|rF?hV%2WCj[ayj[a|j[az_NaeWBj@ayfRayfQfQM{M|azj[azf6fQfQfQIpWXofj[ayj[j[fQayWCoeoeaya}j[ayfQa{oLj?j[WVj[ayayj[fQoff7azayj[ayj[j[ayofayayayj[fQj[ayayj[ayfjj[j[ayjuayj['
 
 export default function Page() {
-  const [handle, setHandle] = useState('')
+  const { user, setUser, updateUserHandle } = useUser()
+  const [handle, setHandle] = useState(user?.handle || '')
+
+  const updateHandle = async () => {
+    if (!handle || !user) return
+
+    setUser({ ...user, handle })
+
+    const response = await updateUserHandle(handle)
+
+    router.replace('/me')
+  }
 
   return (
     <View className="absolute flex h-screen w-screen items-center justify-center bg-[#fff]">
@@ -51,19 +64,18 @@ export default function Page() {
 
       <View className=" flex w-full items-center ">
         <TextInput
-          className=""
           style={{
             fontFamily: 'Knewave',
             fontSize: 32,
           }}
           value={handle}
           onChangeText={setHandle}
-          placeholder="Hello"
+          placeholder={user?.handle || 'Hello'}
           autoCapitalize="none"
         />
       </View>
 
-      <View className=" absolute bottom-[18%] flex w-full items-center ">
+      <View className=" absolute bottom-[18%] flex w-full items-center">
         <Image
           className="h-[283px] w-[300px]"
           source={IMAGES.wood_table}
@@ -71,6 +83,18 @@ export default function Page() {
           contentFit="contain"
           transition={1000}
         />
+
+        {handle.length > 3 && handle.length < 15 && (
+          <TouchableOpacity className="absolute top-[-110px] h-[50px] w-[100px]" onPress={updateHandle}>
+            <Image
+              className="h-full w-full"
+              source={IMAGES.ok}
+              placeholder={blurhash}
+              contentFit="contain"
+              transition={1000}
+            />
+          </TouchableOpacity>
+        )}
       </View>
     </View>
   )

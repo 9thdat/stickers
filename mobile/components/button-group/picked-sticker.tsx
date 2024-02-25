@@ -34,7 +34,7 @@ export default function PickedStickerButtonGroup({ shown }: EditStickerButtonGro
 
   const mint = async () => {
     try {
-      const response = await fetch(HELIUS_ENDPOINT, {
+      await fetch(HELIUS_ENDPOINT, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -65,9 +65,6 @@ export default function PickedStickerButtonGroup({ shown }: EditStickerButtonGro
           },
         }),
       })
-      const { result } = await response.json()
-
-      console.log(result)
 
       setStage('normal')
     } catch (error) {

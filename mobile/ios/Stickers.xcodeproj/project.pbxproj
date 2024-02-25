@@ -7,17 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		006D03C25A49416988134633 /* Knewave-outline.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EA0AD68B62114045811E51A3 /* Knewave-outline.ttf */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		1A9056C7E4E04C878434A8B3 /* Knewave.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B2159554D19E4BCBBBD8AA49 /* Knewave.ttf */; };
 		3E461D99554A48A4959DE609 /* SplashScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */; };
-		43AD1F5C3B244B5C9D214B2D /* noop-file.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701FEA3ED22C4FEEA01CF054 /* noop-file.swift */; };
 		96905EF65AED1B983A6B3ABC /* libPods-Stickers.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 58EEBF8E8E6FB1BC6CAF49B5 /* libPods-Stickers.a */; };
+		98BCB47D2C9F4B0AB12DE830 /* noop-file.swift in Sources */ = {isa = PBXBuildFile; fileRef = D78BC969CD2A4CF48D4327F0 /* noop-file.swift */; };
 		B18059E884C0ABDD17F3DC3D /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC715A2D49A985799AEE119 /* ExpoModulesProvider.swift */; };
+		B794FE77DA324DBFA876F28F /* Knewave.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6EF60CFC434047F1BD91A9C0 /* Knewave.ttf */; };
 		BB2F792D24A3F905000567C9 /* Expo.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB2F792C24A3F905000567C9 /* Expo.plist */; };
-		DF41E24E816E4023AAEA399F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6C0DB0BA5202491CBC4CB58C /* GoogleService-Info.plist */; };
+		E1B13C8F77E94536B3A02B99 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B10AFEB781E44680A08A2E2B /* GoogleService-Info.plist */; };
+		E7DF9C9C2DD243F9AC7B776E /* Knewave-outline.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E6525DC8AE7E48BCBF995CCA /* Knewave-outline.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,15 +28,15 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Stickers/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Stickers/main.m; sourceTree = "<group>"; };
 		58EEBF8E8E6FB1BC6CAF49B5 /* libPods-Stickers.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Stickers.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		6C0DB0BA5202491CBC4CB58C /* GoogleService-Info.plist */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "Stickers/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		6C2E3173556A471DD304B334 /* Pods-Stickers.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Stickers.debug.xcconfig"; path = "Target Support Files/Pods-Stickers/Pods-Stickers.debug.xcconfig"; sourceTree = "<group>"; };
-		701FEA3ED22C4FEEA01CF054 /* noop-file.swift */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.swift; name = "noop-file.swift"; path = "Stickers/noop-file.swift"; sourceTree = "<group>"; };
+		6EF60CFC434047F1BD91A9C0 /* Knewave.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = Knewave.ttf; path = ../assets/fonts/Knewave.ttf; sourceTree = "<group>"; };
 		7A4D352CD337FB3A3BF06240 /* Pods-Stickers.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Stickers.release.xcconfig"; path = "Target Support Files/Pods-Stickers/Pods-Stickers.release.xcconfig"; sourceTree = "<group>"; };
+		9809EA46D2A7417596EF96CC /* Stickers-Bridging-Header.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = "Stickers-Bridging-Header.h"; path = "Stickers/Stickers-Bridging-Header.h"; sourceTree = "<group>"; };
 		AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = SplashScreen.storyboard; path = Stickers/SplashScreen.storyboard; sourceTree = "<group>"; };
-		B2159554D19E4BCBBBD8AA49 /* Knewave.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = Knewave.ttf; path = ../assets/fonts/Knewave.ttf; sourceTree = "<group>"; };
+		B10AFEB781E44680A08A2E2B /* GoogleService-Info.plist */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "Stickers/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BB2F792C24A3F905000567C9 /* Expo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Expo.plist; sourceTree = "<group>"; };
-		CA919F874DEF4056A0DA50B5 /* Stickers-Bridging-Header.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = "Stickers-Bridging-Header.h"; path = "Stickers/Stickers-Bridging-Header.h"; sourceTree = "<group>"; };
-		EA0AD68B62114045811E51A3 /* Knewave-outline.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Knewave-outline.ttf"; path = "../assets/fonts/Knewave-outline.ttf"; sourceTree = "<group>"; };
+		D78BC969CD2A4CF48D4327F0 /* noop-file.swift */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.swift; name = "noop-file.swift"; path = "Stickers/noop-file.swift"; sourceTree = "<group>"; };
+		E6525DC8AE7E48BCBF995CCA /* Knewave-outline.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Knewave-outline.ttf"; path = "../assets/fonts/Knewave-outline.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		FAC715A2D49A985799AEE119 /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-Stickers/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -53,6 +53,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		031BC4A4A30E499581A98752 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				E6525DC8AE7E48BCBF995CCA /* Knewave-outline.ttf */,
+				6EF60CFC434047F1BD91A9C0 /* Knewave.ttf */,
+			);
+			name = Resources;
+			path = "";
+			sourceTree = "<group>";
+		};
 		13B07FAE1A68108700A75B9A /* Stickers */ = {
 			isa = PBXGroup;
 			children = (
@@ -63,9 +73,9 @@
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				13B07FB71A68108700A75B9A /* main.m */,
 				AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */,
-				6C0DB0BA5202491CBC4CB58C /* GoogleService-Info.plist */,
-				701FEA3ED22C4FEEA01CF054 /* noop-file.swift */,
-				CA919F874DEF4056A0DA50B5 /* Stickers-Bridging-Header.h */,
+				B10AFEB781E44680A08A2E2B /* GoogleService-Info.plist */,
+				D78BC969CD2A4CF48D4327F0 /* noop-file.swift */,
+				9809EA46D2A7417596EF96CC /* Stickers-Bridging-Header.h */,
 			);
 			name = Stickers;
 			sourceTree = "<group>";
@@ -77,16 +87,6 @@
 				58EEBF8E8E6FB1BC6CAF49B5 /* libPods-Stickers.a */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		5A10D5D77F7144EB92D72002 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				EA0AD68B62114045811E51A3 /* Knewave-outline.ttf */,
-				B2159554D19E4BCBBBD8AA49 /* Knewave.ttf */,
-			);
-			name = Resources;
-			path = "";
 			sourceTree = "<group>";
 		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
@@ -105,7 +105,7 @@
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				D65327D7A22EEC0BE12398D9 /* Pods */,
 				D7E4C46ADA2E9064B798F356 /* ExpoModulesProviders */,
-				5A10D5D77F7144EB92D72002 /* Resources */,
+				031BC4A4A30E499581A98752 /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -162,13 +162,13 @@
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "Stickers" */;
 			buildPhases = (
 				08A4A3CD28434E44B6B9DE2E /* [CP] Check Pods Manifest.lock */,
-				F54BDE892E7930A1DDAACB66 /* [Expo] Configure project */,
+				0E4017F69A2FC6961F4139E3 /* [Expo] Configure project */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
 				800E24972A6A228C8D4807E9 /* [CP] Copy Pods Resources */,
-				4C680789AE92BC93F3CCBE77 /* [CP] Embed Pods Frameworks */,
+				2F096F2C2EE12CF94C9FC0A3 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -218,9 +218,9 @@
 				BB2F792D24A3F905000567C9 /* Expo.plist in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				3E461D99554A48A4959DE609 /* SplashScreen.storyboard in Resources */,
-				DF41E24E816E4023AAEA399F /* GoogleService-Info.plist in Resources */,
-				006D03C25A49416988134633 /* Knewave-outline.ttf in Resources */,
-				1A9056C7E4E04C878434A8B3 /* Knewave.ttf in Resources */,
+				E1B13C8F77E94536B3A02B99 /* GoogleService-Info.plist in Resources */,
+				E7DF9C9C2DD243F9AC7B776E /* Knewave-outline.ttf in Resources */,
+				B794FE77DA324DBFA876F28F /* Knewave.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -264,7 +264,26 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		4C680789AE92BC93F3CCBE77 /* [CP] Embed Pods Frameworks */ = {
+		0E4017F69A2FC6961F4139E3 /* [Expo] Configure project */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "[Expo] Configure project";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# This script configures Expo modules and generates the modules provider file.\nbash -l -c \"./Pods/Target\\ Support\\ Files/Pods-Stickers/expo-configure-project.sh\"\n";
+		};
+		2F096F2C2EE12CF94C9FC0A3 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -306,25 +325,6 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Stickers/Pods-Stickers-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		F54BDE892E7930A1DDAACB66 /* [Expo] Configure project */ = {
-			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "[Expo] Configure project";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# This script configures Expo modules and generates the modules provider file.\nbash -l -c \"./Pods/Target\\ Support\\ Files/Pods-Stickers/expo-configure-project.sh\"\n";
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -335,7 +335,7 @@
 				13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 				B18059E884C0ABDD17F3DC3D /* ExpoModulesProvider.swift in Sources */,
-				43AD1F5C3B244B5C9D214B2D /* noop-file.swift in Sources */,
+				98BCB47D2C9F4B0AB12DE830 /* noop-file.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

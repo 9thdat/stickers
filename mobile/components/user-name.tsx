@@ -14,7 +14,7 @@ interface UserNameProps {
 export default function UserName({ name }: UserNameProps) {
   return (
     <View className="absolute top-[10%] flex w-full items-center justify-center">
-      <View className=" skew-x-6 bg-white p-2 px-4">
+      <View className=" bg-white p-2 px-4">
         <Text style={{ fontFamily: 'KnewaveOutline' }} className="text-3xl">
           {slug(name)}
         </Text>
