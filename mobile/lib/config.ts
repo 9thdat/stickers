@@ -1,4 +1,5 @@
 import { GoogleSignin, GoogleSigninButton, statusCodes } from '@react-native-google-signin/google-signin'
+import { Helius } from 'helius-sdk'
 
 export const STORES = {
   USER: 'user',
@@ -12,8 +13,11 @@ export const GOOGLE_AUTH_SCOPES = [
 
 GoogleSignin.configure({
   scopes: GOOGLE_AUTH_SCOPES,
-  webClientId: '7034554027-fbqs0c1bj1ieoru6e7pvnl97gpagk9a1.apps.googleusercontent.com',
+  webClientId: process.env.EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID!,
 })
+
+export const HELIUS_API_KEY = process.env.EXPO_PUBLIC_HELIUS_API_KEY
+export const HELIUS_ENDPOINT = `https://devnet.helius-rpc.com/?api-key=${HELIUS_API_KEY}`
 
 export const ROUTES = {
   AUTH: 'auth',
@@ -45,4 +49,7 @@ export const IMAGES = {
   ga: require('../assets/stickers/ga.png'),
   hand_apple: require('../assets/stickers/hand-apple.png'),
   trash_bin: require('../assets/stickers/trash-bin.png'),
+  cat_hammer: require('../assets/stickers/cat-hammer.png'),
+  mint: require('../assets/stickers/mint.png'),
+  nope: require('../assets/stickers/nope.png'),
 }

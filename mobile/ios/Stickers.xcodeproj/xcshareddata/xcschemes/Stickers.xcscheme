@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-               BuildableName = "Sticker.app"
-               BlueprintName = "Sticker"
-               ReferencedContainer = "container:Sticker.xcodeproj">
+               BuildableName = "Stickers.app"
+               BlueprintName = "Stickers"
+               ReferencedContainer = "container:Stickers.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "StickerTests.xctest"
-               BlueprintName = "StickerTests"
-               ReferencedContainer = "container:Sticker.xcodeproj">
+               BuildableName = "StickersTests.xctest"
+               BlueprintName = "StickersTests"
+               ReferencedContainer = "container:Stickers.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -55,9 +55,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "Sticker.app"
-            BlueprintName = "Sticker"
-            ReferencedContainer = "container:Sticker.xcodeproj">
+            BuildableName = "Stickers.app"
+            BlueprintName = "Stickers"
+            ReferencedContainer = "container:Stickers.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -72,9 +72,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "Sticker.app"
-            BlueprintName = "Sticker"
-            ReferencedContainer = "container:Sticker.xcodeproj">
+            BuildableName = "Stickers.app"
+            BlueprintName = "Stickers"
+            ReferencedContainer = "container:Stickers.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

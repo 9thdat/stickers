@@ -1,59 +1,43 @@
-import DeleteButton from '@/components/delete-button'
-import MyActions from '@/components/my-actions'
+import EditStickerButtonGroup from '@/components/button-group/edit-sticker'
+import MyActionButtonGroup from '@/components/button-group/my-action'
+import PickedStickerButtonGroup from '@/components/button-group/picked-sticker'
+import EditableSticker from '@/components/editable-sticker'
 import NotificationTrigger from '@/components/notification-trigger'
 import UserName from '@/components/user-name'
+import { useSelectSticker } from '@/hooks/use-selected-sticker'
+import useStage from '@/hooks/use-stage'
 import { IMAGES } from '@/lib/config'
 import axios from 'axios'
 import { Image } from 'expo-image'
 import { useState } from 'react'
-import { View } from 'react-native'
-import { Gesture, GestureDetector, TouchableOpacity } from 'react-native-gesture-handler'
+import { Text, View } from 'react-native'
 import { ImageLibraryOptions, launchImageLibrary } from 'react-native-image-picker'
-import Animated, { useAnimatedStyle, useSharedValue, withSpring } from 'react-native-reanimated'
 
 const blurhash =
   '|rF?hV%2WCj[ayj[a|j[az_NaeWBj@ayfRayfQfQM{M|azj[azf6fQfQfQIpWXofj[ayj[j[fQayWCoeoeaya}j[ayfQa{oLj?j[WVj[ayayj[fQoff7azayj[ayj[j[ayofayayayj[fQj[ayayj[ayfjj[j[ayjuayj['
 
+const STICKERS = [
+  {
+    id: '1231231',
+    transform: {
+      position: {
+        x: 123,
+        y: 123,
+      },
+      rotation: {
+        x: 123,
+        y: 123,
+      },
+    },
+    uri: 'data:image/png;base64,123123123',
+    base64: true,
+  },
+]
+
 export default function Page() {
   const [responseBase64, setResponseBase64] = useState<string>('')
-
-  const [showDelete, setShowDelete] = useState<boolean>(false)
-
-  const offset = useSharedValue({ x: 0, y: 0 })
-
-  const animatedStyles = useAnimatedStyle(() => {
-    return {
-      transform: [
-        {
-          translateX: withSpring(offset.value.x, {
-            damping: 50,
-            stiffness: 200,
-          }),
-        },
-        {
-          translateY: withSpring(offset.value.y, {
-            damping: 50,
-            stiffness: 200,
-          }),
-        },
-      ],
-    }
-  })
-
-  const start = useSharedValue({ x: 0, y: 0 })
-  const gesture = Gesture.Pan()
-    .onUpdate((e) => {
-      offset.value = {
-        x: e.translationX + start.value.x,
-        y: e.translationY + start.value.y,
-      }
-    })
-    .onEnd(() => {
-      start.value = {
-        x: offset.value.x,
-        y: offset.value.y,
-      }
-    })
+  const { stage, setStage } = useStage()
+  const { setSelectedSticker } = useSelectSticker()
 
   const pickImage = async () => {
     const options: ImageLibraryOptions = {
@@ -74,14 +58,12 @@ export default function Page() {
         })
 
         setResponseBase64(response.data.image)
+        setStage('picked')
+        setSelectedSticker(response.data.image)
       } catch (error) {
         console.error(error)
       }
     }
-  }
-
-  const selectSticker = () => {
-    setShowDelete(!showDelete)
   }
 
   return (
@@ -98,38 +80,16 @@ export default function Page() {
 
       <View className="flex h-[70%] w-full items-center justify-center rounded-lg  p-5 pb-2">
         <View className="relative h-full w-full rounded-2xl border-[2px] border-[#8AAFE8]">
-          <GestureDetector gesture={gesture}>
-            <Animated.View style={[animatedStyles]} className="h-[50px] w-[150px]">
-              <TouchableOpacity activeOpacity={1} onPress={selectSticker}>
-                {responseBase64 ? (
-                  <Image
-                    className="h-[50px] w-[150px]"
-                    source={{
-                      uri: `data:image/png;base64,${responseBase64}`,
-                    }}
-                    placeholder={blurhash}
-                    contentFit="contain"
-                    transition={1000}
-                  />
-                ) : (
-                  <Image
-                    className="h-[50px] w-[150px]"
-                    source={IMAGES.ga}
-                    placeholder={blurhash}
-                    contentFit="contain"
-                    transition={1000}
-                  />
-                )}
-              </TouchableOpacity>
-            </Animated.View>
-          </GestureDetector>
+          {responseBase64 && <EditableSticker uri={responseBase64} />}
         </View>
       </View>
 
       <UserName name="ng0chuyen" />
-      <MyActions pickImage={pickImage} shown={!showDelete} />
-      <DeleteButton shown={showDelete} />
-      <NotificationTrigger shown={showDelete} />
+      <MyActionButtonGroup pickImage={pickImage} shown={stage === 'normal'} />
+      <PickedStickerButtonGroup shown={stage === 'picked'} />
+      <EditStickerButtonGroup shown={stage === 'editing'} />
+
+      <NotificationTrigger shown={stage === 'normal'} />
     </View>
   )
 }

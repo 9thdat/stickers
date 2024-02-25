@@ -12,7 +12,7 @@ interface MyActionsProps {
   pickImage: () => void
 }
 
-export default function MyActions({ shown, pickImage }: MyActionsProps) {
+export default function MyActionButtonGroup({ shown, pickImage }: MyActionsProps) {
   const bottom = useSharedValue(100)
 
   useEffect(() => {

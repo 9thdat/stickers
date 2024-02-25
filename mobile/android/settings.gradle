@@ -1,4 +1,4 @@
-rootProject.name = 'Sticker'
+rootProject.name = 'Stickers'
 
 dependencyResolutionManagement {
   versionCatalogs {

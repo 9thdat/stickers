@@ -19,7 +19,7 @@ export default function NotificationTrigger({ shown }: NotificationTriggerProps)
   }))
 
   useEffect(() => {
-    rotation.value = withSpring(!shown ? 0 : 60, {
+    rotation.value = withSpring(shown ? 0 : 60, {
       damping: 50,
       stiffness: 200,
     })
