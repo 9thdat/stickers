@@ -14,6 +14,7 @@ export async function POST(request: Request) {
       scale: String(sticker.scale),
       position: String(sticker.position),
       rotation: String(sticker.rotation),
+      address: String(sticker.address),
     },
   })
 

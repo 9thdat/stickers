@@ -108,8 +108,8 @@ export default function Page() {
 
       <UserName name={user?.handle || 'Someone'} />
       <MyActionButtonGroup pickImage={pickImage} shown={stage === 'normal'} />
-      <PickedStickerButtonGroup shown={stage === 'picked'} onCanceled={() => setResponseImage('')} />
-      <EditStickerButtonGroup shown={stage === 'editing'} mutate={mutate} />
+      <PickedStickerButtonGroup shown={stage === 'picked'} mutate={mutate} onCanceled={() => setResponseImage('')} />
+      <EditStickerButtonGroup shown={stage === 'editing'} mutate={mutate} onDone={() => setResponseImage('')} />
 
       <NotificationTrigger shown={stage === 'normal'} />
     </View>

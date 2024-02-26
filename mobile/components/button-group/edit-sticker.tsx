@@ -13,9 +13,10 @@ const blurhash =
 interface EditStickerButtonGroupProps {
   shown: boolean
   mutate: () => void
+  onDone: () => void
 }
 
-export default function EditStickerButtonGroup({ shown, mutate }: EditStickerButtonGroupProps) {
+export default function EditStickerButtonGroup({ shown, mutate, onDone }: EditStickerButtonGroupProps) {
   const bottom = useSharedValue(0)
   const opacity = useSharedValue(0)
   const { setStage } = useStage()
@@ -41,7 +42,9 @@ export default function EditStickerButtonGroup({ shown, mutate }: EditStickerBut
       position: `${transform.position.x},${transform.position.y}`,
       scale: transform.scale,
       rotation: transform.rotation,
+      address: '',
     })
+    onDone()
     setStage('normal')
     setSelectedSticker('')
   }
@@ -73,7 +76,7 @@ export default function EditStickerButtonGroup({ shown, mutate }: EditStickerBut
       <TouchableOpacity onPress={ok} className="h-100px] w-[100px]">
         <Image
           className="h-full w-full"
-          source={IMAGES.mint}
+          source={IMAGES.cat_ok}
           placeholder={blurhash}
           contentFit="contain"
           transition={1000}

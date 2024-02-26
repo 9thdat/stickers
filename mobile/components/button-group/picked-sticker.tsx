@@ -14,9 +14,10 @@ const blurhash =
 interface EditStickerButtonGroupProps {
   shown: boolean
   onCanceled: () => void
+  mutate: () => void
 }
 
-export default function PickedStickerButtonGroup({ shown, onCanceled }: EditStickerButtonGroupProps) {
+export default function PickedStickerButtonGroup({ shown, onCanceled, mutate }: EditStickerButtonGroupProps) {
   const bottom = useSharedValue(0)
   const opacity = useSharedValue(0)
   const { setStage } = useStage()
@@ -39,7 +40,7 @@ export default function PickedStickerButtonGroup({ shown, onCanceled }: EditStic
     if (!user) return
 
     try {
-      await fetch(HELIUS_ENDPOINT, {
+      const response = await fetch(HELIUS_ENDPOINT, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -60,13 +61,18 @@ export default function PickedStickerButtonGroup({ shown, onCanceled }: EditStic
         }),
       })
 
+      const { result } = await response.json()
+
       await createSticker({
         id: selectedSticker.split('.')[0],
         owner: user.wallet,
         position: `${transform.position.x},${transform.position.y}`,
         scale: transform.scale,
         rotation: transform.rotation,
+        address: result.assetId,
       })
+      mutate()
+      onCanceled()
       setStage('normal')
       setSelectedSticker('')
     } catch (error) {

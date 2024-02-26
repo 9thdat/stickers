@@ -126,7 +126,7 @@ export default function EditableSticker({ sticker }: EditableStickerProps) {
             opacity: selectedSticker ? (sticker.id === selectedSticker ? 1 : 0.5) : 1,
           },
         ]}
-        className="h-[100px] w-[100px]"
+        className="absolute h-[100px] w-[100px]"
       >
         <TouchableOpacity activeOpacity={1} onPress={selectSticker}>
           {sticker ? (

@@ -1,5 +1,4 @@
 import { useSelectSticker } from '@/hooks/use-selected-sticker'
-import useStage from '@/hooks/use-stage'
 import { IMAGES } from '@/lib/config'
 import { computeStickerURI } from '@/lib/utils'
 import { Image } from 'expo-image'
@@ -25,8 +24,7 @@ export default function NewSticker({ image }: NewStickerProps) {
   const rotation = useSharedValue(0)
   const savedRotation = useSharedValue(0)
 
-  const { setStage } = useStage()
-  const { setSelectedSticker, setTransform, selectedSticker } = useSelectSticker()
+  const { setTransform } = useSelectSticker()
 
   const animatedStyles = useAnimatedStyle(() => {
     return {
@@ -63,7 +61,7 @@ export default function NewSticker({ image }: NewStickerProps) {
 
       runOnJS(setTransform)({
         position: offset.value,
-        rotation: (rotation.value / Math.PI) * 180,
+        rotation: rotation.value / Math.PI,
         scale: scale.value,
       })
     })
@@ -83,7 +81,7 @@ export default function NewSticker({ image }: NewStickerProps) {
 
       runOnJS(setTransform)({
         position: offset.value,
-        rotation: (rotation.value / Math.PI) * 180,
+        rotation: rotation.value,
         scale: scale.value,
       })
     })
@@ -97,7 +95,7 @@ export default function NewSticker({ image }: NewStickerProps) {
 
       runOnJS(setTransform)({
         position: offset.value,
-        rotation: (rotation.value / Math.PI) * 180,
+        rotation: rotation.value,
         scale: scale.value,
       })
     })
@@ -106,7 +104,7 @@ export default function NewSticker({ image }: NewStickerProps) {
 
   return (
     <GestureDetector gesture={composed}>
-      <Animated.View style={[animatedStyles]} className="h-[100px] w-[100px] bg-slate-400">
+      <Animated.View style={[animatedStyles]} className="absolute h-[100px] w-[100px]">
         <View>
           {image ? (
             <Image
