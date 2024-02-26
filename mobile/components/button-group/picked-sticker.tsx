@@ -6,6 +6,7 @@ import { HELIUS_ENDPOINT, IMAGES } from '@/lib/config'
 import useStage from '@/hooks/use-stage'
 import { useSelectSticker } from '@/hooks/use-selected-sticker'
 import { computeStickerURI } from '@/lib/utils'
+import { useUser } from '@/hooks/use-user'
 
 const blurhash =
   '|rF?hV%2WCj[ayj[a|j[az_NaeWBj@ayfRayfQfQM{M|azj[azf6fQfQfQIpWXofj[ayj[j[fQayWCoeoeaya}j[ayfQa{oLj?j[WVj[ayayj[fQoff7azayj[ayj[j[ayofayayayj[fQj[ayayj[ayfjj[j[ayjuayj['
@@ -18,7 +19,8 @@ export default function PickedStickerButtonGroup({ shown }: EditStickerButtonGro
   const bottom = useSharedValue(0)
   const opacity = useSharedValue(0)
   const { setStage } = useStage()
-  const { selectedSticker } = useSelectSticker()
+  const { selectedSticker, transform, setSelectedSticker } = useSelectSticker()
+  const { user, createSticker } = useUser()
 
   useEffect(() => {
     bottom.value = withSpring(shown ? 0 : -150, {
@@ -32,41 +34,51 @@ export default function PickedStickerButtonGroup({ shown }: EditStickerButtonGro
     })
   }, [shown])
 
-  const mint = async () => {
-    try {
-      await fetch(HELIUS_ENDPOINT, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          jsonrpc: '2.0',
-          id: 'stickers-v1',
-          method: 'mintCompressedNft',
-          params: {
-            name: 'Exodia the Forbidden One',
-            symbol: 'STKS',
-            owner: 'GpjDzFpdim6q2GLaRcZTFbDs3G6SgVLKFZYCqDwCmd2u',
-            description:
-              'Exodia the Forbidden One is a powerful, legendary creature composed of five parts: ' +
-              'the Right Leg, Left Leg, Right Arm, Left Arm, and the Head. When all five parts are assembled, Exodia becomes an unstoppable force.',
-            attributes: [
-              {
-                trait_type: 'Position',
-                value: ``,
-              },
-              {
-                trait_type: 'Scale',
-                value: 'Infinite',
-              },
-            ],
-            imageUrl: computeStickerURI(selectedSticker),
-            sellerFeeBasisPoints: 5000,
-          },
-        }),
-      })
+  useEffect(() => {
+    console.log(transform)
+  }, [transform])
 
+  const mint = async () => {
+    if (!user) return
+
+    try {
+      // await fetch(HELIUS_ENDPOINT, {
+      //   method: 'POST',
+      //   headers: {
+      //     'Content-Type': 'application/json',
+      //   },
+      //   body: JSON.stringify({
+      //     jsonrpc: '2.0',
+      //     id: 'stickers-v1',
+      //     method: 'mintCompressedNft',
+      //     params: {
+      //       name: `Sticker by @${user?.handle}`,
+      //       symbol: 'STKS',
+      //       owner: user?.wallet,
+      //       description: `A sticker by @${user?.handle}.`,
+      //       attributes: [
+      //         {
+      //           trait_type: 'Position',
+      //           value: ``,
+      //         },
+      //         {
+      //           trait_type: 'Scale',
+      //           value: 'Infinite',
+      //         },
+      //       ],
+      //       imageUrl: computeStickerURI(selectedSticker),
+      //       sellerFeeBasisPoints: 5000,
+      //     },
+      //   }),
+      // })
+
+      await createSticker({
+        id: selectedSticker.split('.')[0],
+        owner: user.wallet,
+        ...transform,
+      })
       setStage('normal')
+      setSelectedSticker('')
     } catch (error) {
       console.log(error)
     }

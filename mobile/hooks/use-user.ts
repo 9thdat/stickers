@@ -1,10 +1,14 @@
 import { call } from '@/services/www'
 import { useUserStore } from '@/stores/user'
+import { Sticker } from '@/types/sticker'
 import { User } from '@/types/user'
 
 type UserResponse = User
 
 type UserRequest = User
+
+type StickerResponse = Sticker
+type StickerRequest = Sticker
 
 export function useUser() {
   const store = useUserStore()
@@ -32,5 +36,13 @@ export function useUser() {
     return response
   }
 
-  return { ...store, fetchUser, createUser, updateUserHandle }
+  const createSticker = async (sticker: Sticker) => {
+    console.log(sticker)
+
+    const response = await call<StickerRequest, StickerResponse>('post', '/stickers', sticker)
+
+    return response
+  }
+
+  return { ...store, fetchUser, createUser, updateUserHandle, createSticker }
 }

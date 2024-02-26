@@ -7,39 +7,43 @@ import UserName from '@/components/user-name'
 import { useSelectSticker } from '@/hooks/use-selected-sticker'
 import useStage from '@/hooks/use-stage'
 import { useUser } from '@/hooks/use-user'
-import { IMAGES } from '@/lib/config'
+import { HELIUS_ENDPOINT, IMAGES } from '@/lib/config'
+import { Sticker } from '@/types/sticker'
 import axios from 'axios'
 import { Image } from 'expo-image'
 import { useState } from 'react'
-import { Text, View } from 'react-native'
+import { View } from 'react-native'
 import { ImageLibraryOptions, launchImageLibrary } from 'react-native-image-picker'
+import useSWR from 'swr'
 
 const blurhash =
   '|rF?hV%2WCj[ayj[a|j[az_NaeWBj@ayfRayfQfQM{M|azj[azf6fQfQfQIpWXofj[ayj[j[fQayWCoeoeaya}j[ayfQa{oLj?j[WVj[ayayj[fQoff7azayj[ayj[j[ayofayayayj[fQj[ayayj[ayfjj[j[ayjuayj['
 
-const STICKERS = [
-  {
-    id: '1231231',
-    transform: {
-      position: {
-        x: 123,
-        y: 123,
-      },
-      rotation: {
-        x: 123,
-        y: 123,
-      },
+const fetcher = (url: string, ownerAddress: string) =>
+  fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
     },
-    uri: 'data:image/png;base64,123123123',
-    base64: true,
-  },
-]
+    body: JSON.stringify({
+      jsonrpc: '2.0',
+      id: 'stickers-v1',
+      method: 'getAssetsByOwner',
+      params: {
+        ownerAddress,
+        page: 1,
+        limit: 1000,
+      },
+    }),
+  }).then((r) => r.json())
 
 export default function Page() {
-  const [responseBase64, setResponseBase64] = useState<string>('')
+  const [responseImage, setResponseImage] = useState<string>('')
   const { stage, setStage } = useStage()
   const { setSelectedSticker } = useSelectSticker()
   const { user } = useUser()
+
+  const { data, error } = useSWR(user ? HELIUS_ENDPOINT : null, (url) => fetcher(url, user?.wallet || ''))
 
   const pickImage = async () => {
     const options: ImageLibraryOptions = {
@@ -59,7 +63,8 @@ export default function Page() {
           image: pickerResponse.assets[0].base64,
         })
 
-        setResponseBase64(response.data.image)
+        // setResponseSticker(response.data)
+        setResponseImage(response.data.image)
         setStage('picked')
         setSelectedSticker(response.data.image)
       } catch (error) {
@@ -82,7 +87,7 @@ export default function Page() {
 
       <View className="flex h-[70%] w-full items-center justify-center rounded-lg  p-5 pb-2">
         <View className="relative h-full w-full rounded-2xl border-[2px] border-[#8AAFE8]">
-          {responseBase64 && <EditableSticker uri={responseBase64} />}
+          {responseImage && <EditableSticker image={responseImage} />}
         </View>
       </View>
 

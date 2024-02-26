@@ -1,27 +1,28 @@
-import useStage from '@/hooks/use-stage'
 import { useSelectSticker } from '@/hooks/use-selected-sticker'
+import useStage from '@/hooks/use-stage'
 import { IMAGES } from '@/lib/config'
 import { computeStickerURI } from '@/lib/utils'
 import { Image } from 'expo-image'
-import { useState } from 'react'
-import { Text } from 'react-native'
 import { Gesture, GestureDetector, TouchableOpacity } from 'react-native-gesture-handler'
-import Animated, { useAnimatedStyle, useSharedValue, withSpring } from 'react-native-reanimated'
+import Animated, { runOnJS, useAnimatedStyle, useSharedValue, withSpring } from 'react-native-reanimated'
 
 const blurhash =
   '|rF?hV%2WCj[ayj[a|j[az_NaeWBj@ayfRayfQfQM{M|azj[azf6fQfQfQIpWXofj[ayj[j[fQayWCoeoeaya}j[ayfQa{oLj?j[WVj[ayayj[fQoff7azayj[ayj[j[ayofayayayj[fQj[ayayj[ayfjj[j[ayjuayj['
 
 interface EditableStickerProps {
-  uri: string
+  image: string
 }
 
-export default function EditableSticker({ uri }: EditableStickerProps) {
+export default function EditableSticker({ image }: EditableStickerProps) {
   const scale = useSharedValue(1)
   const savedScale = useSharedValue(1)
   const offset = useSharedValue({ x: 0, y: 0 })
   const start = useSharedValue({ x: 0, y: 0 })
+  const rotation = useSharedValue(1)
+  const savedRotation = useSharedValue(1)
+
   const { setStage } = useStage()
-  const { setSelectedSticker } = useSelectSticker()
+  const { setSelectedSticker, setTransform, selectedSticker } = useSelectSticker()
 
   const animatedStyles = useAnimatedStyle(() => {
     return {
@@ -44,19 +45,29 @@ export default function EditableSticker({ uri }: EditableStickerProps) {
             stiffness: 200,
           }),
         },
+        { rotateZ: `${(rotation.value / Math.PI) * 180}deg` },
       ],
     }
   })
 
-  const pinch = Gesture.Pinch()
+  const pinchGesture = Gesture.Pinch()
+    .enabled(image === selectedSticker)
     .onUpdate((e) => {
       scale.value = savedScale.value * e.scale
+      console.log(e.velocity)
     })
     .onEnd(() => {
       savedScale.value = scale.value
+
+      runOnJS(setTransform)({
+        position: offset.value,
+        rotation: `${(rotation.value / Math.PI) * 180}deg`,
+        scale: scale.value,
+      })
     })
 
-  const pan = Gesture.Pan()
+  const panGesture = Gesture.Pan()
+    .enabled(image === selectedSticker)
     .onUpdate((e) => {
       offset.value = {
         x: e.translationX + start.value.x,
@@ -68,24 +79,44 @@ export default function EditableSticker({ uri }: EditableStickerProps) {
         x: offset.value.x,
         y: offset.value.y,
       }
+
+      runOnJS(setTransform)({
+        position: offset.value,
+        rotation: `${(rotation.value / Math.PI) * 180}deg`,
+        scale: scale.value,
+      })
+    })
+
+  const rotationGesture = Gesture.Rotation()
+    .onUpdate((e) => {
+      rotation.value = savedRotation.value + e.rotation
+    })
+    .onEnd(() => {
+      savedRotation.value = rotation.value
+
+      runOnJS(setTransform)({
+        position: offset.value,
+        rotation: `${(rotation.value / Math.PI) * 180}deg`,
+        scale: scale.value,
+      })
     })
 
   const selectSticker = async () => {
-    setSelectedSticker(uri)
+    setSelectedSticker(image)
     setStage('editing')
   }
 
-  const composed = Gesture.Simultaneous(pinch, pan)
+  const composed = Gesture.Simultaneous(pinchGesture, panGesture, rotationGesture)
 
   return (
     <GestureDetector gesture={composed}>
       <Animated.View style={[animatedStyles]} className="h-[150px] w-[150px]">
         <TouchableOpacity activeOpacity={1} onPress={selectSticker}>
-          {uri ? (
+          {image ? (
             <Image
               className="h-[150px] w-[150px]"
               style={{ transformOrigin: 'center' }}
-              source={computeStickerURI(uri)}
+              source={computeStickerURI(image)}
               placeholder={blurhash}
               contentFit="contain"
               transition={200}

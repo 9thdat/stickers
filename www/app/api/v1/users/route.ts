@@ -1,7 +1,7 @@
 import prisma from '@/lib/prisma'
 
 export async function GET() {
-  return Response.json({ wau: 'wau' })
+  return Response.json({ wau: 'users-wau' })
 }
 
 export async function POST(request: Request) {

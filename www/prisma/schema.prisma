@@ -3,9 +3,9 @@ generator client {
 }
 
 datasource db {
-  provider  = "postgresql"
-  url       = env("POOL_DATABASE_URL")
-  directUrl = env("DIRECT_DATABASE_URL")
+  provider = "postgresql"
+  url      = env("POOL_DATABASE_URL")
+  // directUrl = env("DIRECT_DATABASE_URL")
 }
 
 model users {
@@ -13,4 +13,12 @@ model users {
   handle String
   email  String @unique
   wallet String @unique
+}
+
+model stickers {
+  id       String @id @unique
+  owner    String @unique
+  position String
+  rotation String
+  scale    String
 }

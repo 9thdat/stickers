@@ -1,7 +1,6 @@
 import { IMAGES } from '@/lib/config'
 import { Image } from 'expo-image'
 import React, { useEffect } from 'react'
-import { Text, View } from 'react-native'
 import Animated, { useAnimatedStyle, useSharedValue, withSpring } from 'react-native-reanimated'
 
 const blurhash =

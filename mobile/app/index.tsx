@@ -1,23 +1,22 @@
-import { useGameShift } from '@/hooks/use-gameshift'
 import { useUser } from '@/hooks/use-user'
-import { router, useRootNavigationState } from 'expo-router'
+import { router } from 'expo-router'
 import { useEffect } from 'react'
-import { Platform, Text, TouchableOpacity, View } from 'react-native'
+import { Text, TouchableOpacity, View } from 'react-native'
 
 export default function HomePage() {
   const { isAuth } = useUser()
 
-  const navigationState = useRootNavigationState()
-
   useEffect(() => {
-    if (!navigationState?.key) return
-
     if (!isAuth) {
-      router.replace('/login')
+      setTimeout(() => {
+        router.replace('/login')
+      }, 0)
     } else {
-      router.replace('/')
+      setTimeout(() => {
+        router.replace('/me')
+      }, 0)
     }
-  }, [isAuth, navigationState])
+  }, [isAuth])
 
   return (
     <View className="absolute flex h-screen w-screen items-center justify-center bg-[#fff]">
