@@ -2,28 +2,28 @@ import { useSelectSticker } from '@/hooks/use-selected-sticker'
 import useStage from '@/hooks/use-stage'
 import { IMAGES } from '@/lib/config'
 import { computeStickerURI } from '@/lib/utils'
-import { Sticker } from '@/types/sticker'
 import { Image } from 'expo-image'
-import { Gesture, GestureDetector, TouchableOpacity } from 'react-native-gesture-handler'
+import { View } from 'react-native'
+import { Gesture, GestureDetector } from 'react-native-gesture-handler'
 import Animated, { runOnJS, useAnimatedStyle, useSharedValue, withSpring } from 'react-native-reanimated'
 
 const blurhash =
   '|rF?hV%2WCj[ayj[a|j[az_NaeWBj@ayfRayfQfQM{M|azj[azf6fQfQfQIpWXofj[ayj[j[fQayWCoeoeaya}j[ayfQa{oLj?j[WVj[ayayj[fQoff7azayj[ayj[j[ayofayayayj[fQj[ayayj[ayfjj[j[ayjuayj['
 
-interface EditableStickerProps {
-  sticker: Sticker
+interface NewStickerProps {
+  image: string
 }
 
-export default function EditableSticker({ sticker }: EditableStickerProps) {
-  const scale = useSharedValue(Number(sticker.scale))
-  const savedScale = useSharedValue(Number(sticker.scale))
+export default function NewSticker({ image }: NewStickerProps) {
+  const scale = useSharedValue(1)
+  const savedScale = useSharedValue(1)
   const offset = useSharedValue({
-    x: Number(sticker.position.split(',')[0]),
-    y: Number(sticker.position.split(',')[1]),
+    x: 0,
+    y: 0,
   })
-  const start = useSharedValue({ x: Number(sticker.position.split(',')[0]), y: Number(sticker.position.split(',')[1]) })
-  const rotation = useSharedValue(Number(sticker.rotation))
-  const savedRotation = useSharedValue(Number(sticker.rotation))
+  const start = useSharedValue({ x: 0, y: 0 })
+  const rotation = useSharedValue(0)
+  const savedRotation = useSharedValue(0)
 
   const { setStage } = useStage()
   const { setSelectedSticker, setTransform, selectedSticker } = useSelectSticker()
@@ -55,7 +55,6 @@ export default function EditableSticker({ sticker }: EditableStickerProps) {
   })
 
   const pinchGesture = Gesture.Pinch()
-    .enabled(sticker.id === selectedSticker)
     .onUpdate((e) => {
       scale.value = savedScale.value * e.scale
     })
@@ -64,13 +63,12 @@ export default function EditableSticker({ sticker }: EditableStickerProps) {
 
       runOnJS(setTransform)({
         position: offset.value,
-        rotation: rotation.value,
+        rotation: (rotation.value / Math.PI) * 180,
         scale: scale.value,
       })
     })
 
   const panGesture = Gesture.Pan()
-    .enabled(sticker.id === selectedSticker)
     .onUpdate((e) => {
       offset.value = {
         x: e.translationX + start.value.x,
@@ -85,13 +83,12 @@ export default function EditableSticker({ sticker }: EditableStickerProps) {
 
       runOnJS(setTransform)({
         position: offset.value,
-        rotation: rotation.value,
+        rotation: (rotation.value / Math.PI) * 180,
         scale: scale.value,
       })
     })
 
   const rotationGesture = Gesture.Rotation()
-    .enabled(sticker.id === selectedSticker)
     .onUpdate((e) => {
       rotation.value = savedRotation.value + e.rotation
     })
@@ -100,40 +97,22 @@ export default function EditableSticker({ sticker }: EditableStickerProps) {
 
       runOnJS(setTransform)({
         position: offset.value,
-        rotation: rotation.value,
+        rotation: (rotation.value / Math.PI) * 180,
         scale: scale.value,
       })
     })
-
-  const selectSticker = async () => {
-    setSelectedSticker(sticker.id)
-    setStage('editing')
-    setTransform({
-      position: { x: Number(sticker.position.split(',')[0]), y: Number(sticker.position.split(',')[1]) },
-      rotation: Number(sticker.rotation),
-      scale: Number(sticker.scale),
-    })
-  }
 
   const composed = Gesture.Simultaneous(pinchGesture, panGesture, rotationGesture)
 
   return (
     <GestureDetector gesture={composed}>
-      <Animated.View
-        style={[
-          animatedStyles,
-          {
-            opacity: selectedSticker ? (sticker.id === selectedSticker ? 1 : 0.5) : 1,
-          },
-        ]}
-        className="h-[100px] w-[100px]"
-      >
-        <TouchableOpacity activeOpacity={1} onPress={selectSticker}>
-          {sticker ? (
+      <Animated.View style={[animatedStyles]} className="h-[100px] w-[100px] bg-slate-400">
+        <View>
+          {image ? (
             <Image
               className="h-full w-full"
               style={{ transformOrigin: 'center' }}
-              source={computeStickerURI(sticker.id)}
+              source={computeStickerURI(image)}
               placeholder={blurhash}
               contentFit="contain"
               transition={200}
@@ -148,7 +127,7 @@ export default function EditableSticker({ sticker }: EditableStickerProps) {
               transition={200}
             />
           )}
-        </TouchableOpacity>
+        </View>
       </Animated.View>
     </GestureDetector>
   )

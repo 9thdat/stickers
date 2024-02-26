@@ -2,12 +2,13 @@ import EditStickerButtonGroup from '@/components/button-group/edit-sticker'
 import MyActionButtonGroup from '@/components/button-group/my-action'
 import PickedStickerButtonGroup from '@/components/button-group/picked-sticker'
 import EditableSticker from '@/components/editable-sticker'
+import NewSticker from '@/components/new-sticker'
 import NotificationTrigger from '@/components/notification-trigger'
 import UserName from '@/components/user-name'
 import { useSelectSticker } from '@/hooks/use-selected-sticker'
 import useStage from '@/hooks/use-stage'
 import { useUser } from '@/hooks/use-user'
-import { HELIUS_ENDPOINT, IMAGES } from '@/lib/config'
+import { IMAGES } from '@/lib/config'
 import { Sticker } from '@/types/sticker'
 import axios from 'axios'
 import { Image } from 'expo-image'
@@ -19,22 +20,32 @@ import useSWR from 'swr'
 const blurhash =
   '|rF?hV%2WCj[ayj[a|j[az_NaeWBj@ayfRayfQfQM{M|azj[azf6fQfQfQIpWXofj[ayj[j[fQayWCoeoeaya}j[ayfQa{oLj?j[WVj[ayayj[fQoff7azayj[ayj[j[ayofayayayj[fQj[ayayj[ayfjj[j[ayjuayj['
 
-const fetcher = (url: string, ownerAddress: string) =>
+// const fetcher = (url: string, ownerAddress: string) =>
+//   fetch(url, {
+//     method: 'POST',
+//     headers: {
+//       'Content-Type': 'application/json',
+//     },
+//     body: JSON.stringify({
+//       jsonrpc: '2.0',
+//       id: 'stickers-v1',
+//       method: 'getAssetsByOwner',
+//       params: {
+//         ownerAddress,
+//         page: 1,
+//         limit: 1000,
+//       },
+//     }),
+//   }).then((r) => r.json())
+
+// const { data, error } = useSWR(user ? HELIUS_ENDPOINT : null, (url) => fetcher(url, user?.wallet || ''))
+
+const fetcher = (url: string) =>
   fetch(url, {
-    method: 'POST',
+    method: 'GET',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({
-      jsonrpc: '2.0',
-      id: 'stickers-v1',
-      method: 'getAssetsByOwner',
-      params: {
-        ownerAddress,
-        page: 1,
-        limit: 1000,
-      },
-    }),
   }).then((r) => r.json())
 
 export default function Page() {
@@ -43,7 +54,7 @@ export default function Page() {
   const { setSelectedSticker } = useSelectSticker()
   const { user } = useUser()
 
-  const { data, error } = useSWR(user ? HELIUS_ENDPOINT : null, (url) => fetcher(url, user?.wallet || ''))
+  const { data, error, mutate } = useSWR(user ? `http://127.0.0.1:3000/api/v1/stickers/${user.wallet}` : null, fetcher)
 
   const pickImage = async () => {
     const options: ImageLibraryOptions = {
@@ -87,14 +98,18 @@ export default function Page() {
 
       <View className="flex h-[70%] w-full items-center justify-center rounded-lg  p-5 pb-2">
         <View className="relative h-full w-full rounded-2xl border-[2px] border-[#8AAFE8]">
-          {responseImage && <EditableSticker image={responseImage} />}
+          {data?.data &&
+            data.data.length > 0 &&
+            data.data.map((sticker: Sticker) => <EditableSticker key={sticker.id} sticker={sticker} />)}
+
+          {responseImage && <NewSticker key={responseImage} image={responseImage} />}
         </View>
       </View>
 
       <UserName name={user?.handle || 'Someone'} />
       <MyActionButtonGroup pickImage={pickImage} shown={stage === 'normal'} />
-      <PickedStickerButtonGroup shown={stage === 'picked'} />
-      <EditStickerButtonGroup shown={stage === 'editing'} />
+      <PickedStickerButtonGroup shown={stage === 'picked'} onCanceled={() => setResponseImage('')} />
+      <EditStickerButtonGroup shown={stage === 'editing'} mutate={mutate} />
 
       <NotificationTrigger shown={stage === 'normal'} />
     </View>

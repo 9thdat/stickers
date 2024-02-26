@@ -5,7 +5,7 @@ interface Transform {
     x: number
     y: number
   }
-  rotation: string
+  rotation: number
   scale: number
 }
 
@@ -26,7 +26,7 @@ export const useSelectStickerStore = create<SelectedStickerState>()((set) => ({
       x: 0,
       y: 0,
     },
-    rotation: '0deg',
+    rotation: 0,
     scale: 1,
   },
   setTransform: (transform: Transform) => set(() => ({ transform })),

@@ -17,7 +17,7 @@ model users {
 
 model stickers {
   id       String @id @unique
-  owner    String @unique
+  owner    String
   position String
   rotation String
   scale    String

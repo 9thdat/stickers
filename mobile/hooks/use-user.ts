@@ -37,12 +37,22 @@ export function useUser() {
   }
 
   const createSticker = async (sticker: Sticker) => {
-    console.log(sticker)
-
     const response = await call<StickerRequest, StickerResponse>('post', '/stickers', sticker)
 
     return response
   }
 
-  return { ...store, fetchUser, createUser, updateUserHandle, createSticker }
+  const deleteSticker = async (id: string) => {
+    const response = await call<{ id: string }, StickerResponse>('delete', '/stickers', { id })
+
+    return response
+  }
+
+  const updateSticker = async (sticker: Sticker) => {
+    const response = await call<StickerRequest, StickerResponse>('put', '/stickers', sticker)
+
+    return response
+  }
+
+  return { ...store, updateSticker, fetchUser, createUser, updateUserHandle, createSticker, deleteSticker }
 }
