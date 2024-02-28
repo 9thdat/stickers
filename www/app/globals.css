@@ -18,12 +18,7 @@
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  background: linear-gradient(to bottom, transparent, rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
 }
 
 @layer utilities {
@@ -31,3 +26,33 @@ body {
     text-wrap: balance;
   }
 }
+
+/* rotate 180deg animation */
+@keyframes rotate180 {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(180deg);
+  }
+}
+
+@keyframes rotate180reverse {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-180deg);
+  }
+}
+
+/* Rotate class */
+.rotate {
+  animation: rotate180 2s 1s linear 1 forwards;
+}
+
+.rotate-reverse {
+  animation: rotate180reverse 2s 1s linear 1 forwards;
+}
+
+/* Rotate 180deg 1 time, delay 2s before start and stay */
