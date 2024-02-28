@@ -1,22 +1,4 @@
-'use client'
-
-import { useEffect } from 'react'
-
 export default function Home() {
-  document.onload = () => {
-    const handLeft = document.getElementById('hand-left') as HTMLImageElement
-    const handRight = document.getElementById('hand-right') as HTMLImageElement
-
-    const handleScroll = () => {
-      const scrollY = window.scrollY
-      const handLeftBottom = scrollY * 0.1
-      const handRightBottom = scrollY * 0.1
-
-      handLeft.style.bottom = `-${handLeftBottom}px`
-      handRight.style.bottom = `-${handRightBottom}px`
-    }
-  }
-
   return (
     <main className="select-none flex relative min-h-screen flex-col bg-[url('/texture.png')] overflow-hidden items-center justify-between p-24 bg-white">
       <figure className='absolute w-[80%] sm:w-[500px] md:w-[700px] items-center h-auto top-[15%] md:top-[10%] flex gap-[100px] md:gap-[50px] flex-col'>
