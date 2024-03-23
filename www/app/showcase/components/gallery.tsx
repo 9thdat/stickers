@@ -2,7 +2,17 @@ import React from "react";
 import showcase from "@/public/showcase.svg";
 import sunflower from "@/public/sunflower.svg";
 import sticker_club from "@/public/sticker_club.svg";
-import test_img from "@/public/test_img.svg";
+import pic1 from "@/public/pic1.svg";
+import pic2 from "@/public/pic2.svg";
+import pic3 from "@/public/pic3.svg";
+import tenSTkS from "@/public/10STkS.svg";
+import thirtySTkS from "@/public/30STkS.svg";
+import hundredSTkS from "@/public/100STkS.svg";
+import dat from "@/public/9thdat.svg";
+import bonkFliper from "@/public/bonkFliper.svg";
+import oxnheo from "@/public/oxnheo.svg";
+import wow from "@/public/wow.svg";
+
 import {Knewave} from "next/dist/compiled/@next/font/dist/google";
 const Gallery = () => {
   return (
@@ -24,48 +34,66 @@ const Gallery = () => {
       <div className="">
         {[...Array(3)].map((_, i) => (
             <div className={"flex justify-center gap-[10%] mb-[5%]"} key={i}>
-                <div className={"border border-black relative pt-[2%]"}>
-                    <div className={"absolute inset-0 flex justify-center text-xl"}>Hello</div>
+                <div className={"relative pt-[2%]"}>
+                    <div className={"absolute inset-0 flex justify-center items-start text-xl"}>
+                        <img src={dat.src} alt="10STkS" className="w-[40%]"/>
+                    </div>
                     <div className="border-2 border-dashed w-60 h-96 border-[#C47D7D] rounded-lg">
                         <img
-                            src={test_img.src}
+                            src={pic1.src}
                             alt="test_img"
                             className="w-[100%] h-[100%]"
                         />
                     </div>
-                    <div className={"flex justify-between"}>
-                        <div className="text-xl">$30STKS/h</div>
-                        <div className="text-lg">ICON</div>
+                    <div className={"flex justify-between pt-[3%]"}>
+                        <div className="text-xl flex items-center">
+                            <img src={thirtySTkS.src} alt="30STkS" className="w-[50%]"/>
+                        </div>
+                        <div className="text-lg flex justify-end">
+                            <img src={wow.src} alt="ICON" className="w-[50%]"/>
+                        </div>
                     </div>
                 </div>
 
-                <div className={"border border-black relative pt-[2%]"}>
-                    <div className={"absolute inset-0 flex justify-center text-xl"}>Hello</div>
-                    <div className="border-2 border-dashed w-60 h-96 border-[#CCB4DF] rounded-lg">
+                <div className={"relative pt-[2%]"}>
+                    <div className={"absolute inset-0 flex justify-center items-start text-xl"}>
+                        <img src={bonkFliper.src} alt="10STkS" className="w-[40%]"/>
+                    </div>
+                    <div className="border-2 border-dashed w-60 h-96 border-[#C47D7D] rounded-lg">
                         <img
-                            src={test_img.src}
+                            src={pic2.src}
                             alt="test_img"
                             className="w-[100%] h-[100%]"
                         />
                     </div>
-                    <div className={"flex justify-between"}>
-                        <div className="text-xl">$30STKS/h</div>
-                        <div className="text-lg">ICON</div>
+                    <div className={"flex justify-between pt-[3%]"}>
+                        <div className="text-xl flex items-center">
+                            <img src={hundredSTkS.src} alt="30STkS" className="w-[50%]"/>
+                        </div>
+                        <div className="text-lg flex justify-end">
+                            <img src={wow.src} alt="ICON" className="w-[50%]"/>
+                        </div>
                     </div>
                 </div>
 
-                <div className={"border border-black relative pt-[2%]"}>
-                    <div className={"absolute inset-0 flex justify-center text-xl"}>Hello</div>
-                    <div className="border-2 border-dashed w-60 h-96 border-[#8BBADC] rounded-lg">
+                <div className={"relative pt-[2%]"}>
+                    <div className={"absolute inset-0 flex justify-center items-start text-xl"}>
+                        <img src={oxnheo.src} alt="10STkS" className="w-[40%]"/>
+                    </div>
+                    <div className="border-2 border-dashed w-60 h-96 border-[#C47D7D] rounded-lg">
                         <img
-                            src={test_img.src}
+                            src={pic3.src}
                             alt="test_img"
                             className="w-[100%] h-[100%]"
                         />
                     </div>
-                    <div className={"flex justify-between"}>
-                        <div className="text-xl">$30STKS/h</div>
-                        <div className="text-lg">ICON</div>
+                    <div className={"flex justify-between pt-[3%]"}>
+                        <div className="text-xl flex items-center">
+                            <img src={tenSTkS.src} alt="30STkS" className="w-[50%]"/>
+                        </div>
+                        <div className="text-lg flex justify-end">
+                            <img src={wow.src} alt="ICON" className="w-[50%]"/>
+                        </div>
                     </div>
                 </div>
             </div>
