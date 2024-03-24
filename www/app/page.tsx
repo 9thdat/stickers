@@ -18,12 +18,6 @@ export default function Home() {
         alt='Hand'
         className='absolute z-10 w-fit h-[100vh] origin-bottom -bottom-10 right-0 lg:right-[15%] xl:right-[20%] 2xl:right-[25%] rotate'
       />
-
-      <footer className='absolute bottom-10'>
-        <a href='https://twitter.com/get_stickers' target='_blank' className='text-black text-base underline'>
-          @get_stickers
-        </a>
-      </footer>
     </main>
   )
 }
